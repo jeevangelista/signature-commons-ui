@@ -92,6 +92,16 @@ export const labels = {
       />
     </div>
   ),
+  'meta': ({label, prop, data, highlight}) => {
+    const val = makeTemplate(prop.text, data)
+    if (val==='undefined'){
+      return null
+    } else{
+      return(
+        <span> ({makeTemplate(prop.text, data)}) </span>
+      )
+    }
+  },
 }
 
 export function objectMatch(m, o) {
@@ -105,6 +115,8 @@ export function objectMatch(m, o) {
         return false
     } else if (typeof m[k] === 'object') {
       if (m[k]['ne'] !== undefined) {
+        if (m[k]['ne'] === null && K === undefined)
+          return false
         if (m[k]['ne'] === K)
           return false
       } else {
