@@ -407,5 +407,3 @@ export class RunningSum extends React.Component<RunningSumProps, RunningSumState
     </div>
   )
 }
-
-export default RunningSum

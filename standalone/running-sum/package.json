@@ -3,10 +3,11 @@
   "version": "1.0.0",
   "description": "",
   "main": "dist/index.js",
+  "module": "dist/index.js",
   "types": "dist/index.d.ts",
   "source": "src/index.tsx",
   "scripts": {
-    "build": "microbundle build --jsx React.createElement --globals react=React",
+    "build": "microbundle build --jsx React.createElement --globals react=React -f es",
     "dev": "parcel serve public/index.html -d build",
     "prepare": "npm run build"
   },
@@ -21,8 +22,8 @@
     "@types/react-dom": "^16.8.5",
     "microbundle": "^0.11.0",
     "parcel-bundler": "^1.12.3",
-    "react-dom": "^16.8.6",
     "react": "^16.8.6",
+    "react-dom": "^16.8.6",
     "typescript": "^3.5.3"
   },
   "peerDependencies": {

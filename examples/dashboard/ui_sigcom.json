@@ -3,7 +3,7 @@
     "landing": true,
     "content": {
       "bar_chart": {
-        "Field_Name": "Version",
+        "Field_Name": "Year",
         "Caption": "Datasets per year"
       },
       "signature_search": true,
@@ -18,7 +18,7 @@
     "content": {
       "resource_pie_caption": "Signatures per Resource",
       "bar_chart": {
-        "Field_Name": "Version",
+        "Field_Name": "Year",
         "Caption": "Datasets per year"
       },
       "library_name": "Library_name",
