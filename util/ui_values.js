@@ -54,7 +54,7 @@ export const UIValues = {
             entities: 'Genes',
             resources: 'Resources',
           },
-        deactivate_download: values.deactivate_download !== undefined ? values.deactivate_download : false,
+        deactivate_download: values.deactivate_download !== undefined ? values.deactivate_download : true,
         deactivate_wordcloud: values.deactivate_wordcloud !== undefined ? values.deactivate_wordcloud : false,
         bar_chart: values.bar_chart,
         bar_chart_style: values.bar_chart_style ||
