@@ -14,17 +14,17 @@ const styles = (theme) => ({
     margin: theme.spacing.unit / 2,
   },
   defaultChip: {
-    background: theme.palette.secondary.main,
-    color: theme.palette.secondary.contrastText,
+    background: theme.palette.defaultChip.main,
+    color: theme.palette.defaultChip.contrastText,
     '&:hover': {
-      background: theme.palette.secondary.dark,
+      background: theme.palette.defaultChip.dark,
     }
   },
   defaultLightChip: {
-    background: theme.palette.secondary.main,
-    color: theme.palette.secondary.contrastText,
+    background: theme.palette.defaultChipLight.main,
+    color: theme.palette.defaultChipLight.contrastText,
     '&:hover': {
-      background: theme.palette.secondary.dark,
+      background: theme.palette.defaultChipLight.dark,
     }
   },
   notChip: {
@@ -40,6 +40,13 @@ const styles = (theme) => ({
   tooltipButton: {
     marginTop: 5,
     padding: '5px 0',
+  },
+  button: {
+    background: theme.palette.defaultButton.main,
+    color: theme.palette.defaultButton.contrastText,
+    '&:hover': {
+      background: theme.palette.defaultButton.dark,
+    }
   },
   icon: {
     paddingBottom: 35,

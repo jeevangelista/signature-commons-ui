@@ -23,10 +23,10 @@ const style = theme => ({
     },
   },
   defaultChip: {
-    background: theme.palette.secondary.main,
-    color: theme.palette.secondary.contrastText,
+    background: theme.palette.defaultChip.main,
+    color: theme.palette.defaultChip.contrastText,
     '&:hover': {
-      background: theme.palette.secondary.dark,
+      background: theme.palette.defaultChip.dark,
     }
   },
   card: {
@@ -34,6 +34,10 @@ const style = theme => ({
     maxHeight: 200,
     marginBottom: 10,
   },
+  submit: {
+    background: theme.palette.defaultButton.main,
+    color: theme.palette.defaultButton.contrastText,
+  }
 })
 
 const mapStateToProps = (state) => {
@@ -94,7 +98,7 @@ class SearchBoxWrapper extends React.Component {
     return (
       <div className="row">
         <Switch>
-          <Route path="/SignatureSearch/:type" component={(props) =>
+          <Route path="/SignatureSearch/:type" render={(props) =>
             <GenesetSearchBox {...props}
               input={this.props.input}
               updateInput={this.props.updateInput}

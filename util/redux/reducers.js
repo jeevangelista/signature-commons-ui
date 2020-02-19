@@ -29,7 +29,8 @@ export const initialState = {
     libraries_count: 'Library.count',
   },
   theme: null,
-  ui_values: null
+  ui_values: null,
+  error_message: null,
 }
 
 function rootReducer(state = initialState, action) {
@@ -68,11 +69,12 @@ function rootReducer(state = initialState, action) {
     }
   }
   if (action.type === action_definitions.INITIALIZE_PARENTS) {
-    const { parent_ids_mapping, parents_mapping } = action
+    // const { parent_ids_mapping, parents_mapping } = action
+    const { parents_mapping } = action
     return {
       ...state,
       initialized: true,
-      parent_ids_mapping,
+      // parent_ids_mapping,
       parents_mapping,
       selected_parent_ids: Object.keys(parents_mapping).reduce((acc, item) => {
         acc[item] = []
@@ -111,7 +113,7 @@ function rootReducer(state = initialState, action) {
       models: Object.keys(state.parents_mapping).reduce((acc, table) => {
         acc = {
           ...acc,
-          [table]: new Model(table, state.parents_mapping[table], state.parent_ids_mapping[table]),
+          [table]: new Model(table, state.parents_mapping[table]),
         }
         return acc
       }, {}),
@@ -213,6 +215,19 @@ function rootReducer(state = initialState, action) {
     return {
       ...state,
       loading_signature: false,
+    }
+  }
+  if (action.type === action_definitions.REPORT_ERROR) {
+    console.log(action)
+    return {
+      ...state,
+      error_message: action.error.message,
+    }
+  }
+  if (action.type === action_definitions.CLOSE_SNACK_BAR) {
+    return {
+      ...state,
+      error_message: null,
     }
   }
   return state

@@ -5,6 +5,11 @@ const default_values = {
     font_families: [
       "https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
     ],
+    favicon: {
+      src: "/static/favicon.ico",
+      alt: "Signature Commons",
+      title: "Signature Commons"
+    },
     header_info: {
       header_left: '',
       header_right: ' Signature Commons',
@@ -26,11 +31,6 @@ const default_values = {
     down_genes_placeholder: 'Genes that are down-regulated in signature or overlap with gene set',
     resource_pie_caption: 'Signatures per Resource',
     search_terms: ['MCF10A', 'Imatinib', 'ZNF830', 'STAT3', 'Neuropathy'],
-    favicon: {
-      src: "/static/favicon.ico",
-      alt: "Signature Commons",
-      title: "Signature Commons"
-    },
     nav: {
       MetadataSearch: {
         active: true,
@@ -63,7 +63,7 @@ const default_values = {
     },
     footer_links: [],
     theme_mod: {},
-    deactivate_powered: false,
+    powered: true,
     github: 'https://github.com/dcic/signature-commons-ui',
     github_issues: 'https://github.com/dcic/signature-commons-ui/issues',
     deactivate_download: true,
@@ -115,6 +115,7 @@ const default_values = {
     ui_schema: '/dcic/signature-commons-schema/v5/meta/schema/ui-schema.json',
     maxResourcesBeforeCollapse: 60,
     maxResourcesToShow: 40,
+    showNonResource: true,
     downloads: {
       gmt: 'Download gmt file',
       tsv: 'Download tsv file',

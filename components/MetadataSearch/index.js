@@ -26,31 +26,26 @@ import { get_schemas } from '../../util/helper/fetch_methods'
 const operationMapper = {
   new_search: (table, current_table) => ({
     metadata_search: table === current_table,
-    per_parent_count: table === current_table,
     value_count: table === current_table,
     count: true,
   }),
   pagination: (table, current_table) => ({
     metadata_search: table === current_table,
-    per_parent_count: false,
     value_count: false,
     count: false,
   }),
   new_filter: (table, current_table) => ({
     metadata_search: table === current_table,
-    per_parent_count: table === current_table,
     value_count: table === current_table,
     count: true,
   }),
   change_tab: (table, current_table) => ({
     metadata_search: table === current_table,
-    per_parent_count: table === current_table,
     value_count: table === current_table,
     count: true,
   }),
   order: (table, current_table) => ({
     metadata_search: table === current_table,
-    per_parent_count: false,
     value_count: false,
     count: false,
   }),
@@ -314,7 +309,14 @@ class MetadataSearch extends React.Component {
               <ListItemText inset primary={field_item.meta.Preferred_Name} />
             </ListItem>
             <Collapse in={this.state.open[field_item.meta.Field_Name]} timeout="auto" unmountOnExit>
-              <MetaFilter stats={stats} schemas={this.state.schemas} field_name={field_item.meta.Field_Name} parent={Object.values(this.props.parents).indexOf(field_item.meta.Field_Name) > -1} />
+              <MetaFilter stats={stats}
+                schemas={this.state.schemas}
+                field_name={field_item.meta.Field_Name}
+                parent={Object.values(this.props.parents).indexOf(field_item.meta.Field_Name) > -1 &&
+                  this.props.models[current_table].grandparent!==field_item.meta.Field_Name}
+                grandparent={this.props.models[current_table].grandparent!==undefined &&
+                             this.props.models[current_table].grandparent===field_item.meta.Field_Name}
+              />
             </Collapse>
           </Card>
         )
@@ -330,8 +332,8 @@ class MetadataSearch extends React.Component {
         <Tabs
           value={this.state.index_value}
           onChange={this.handleChange}
-          indicatorColor="primary"
-          textColor="primary"
+          indicatorColor="secondary"
+          textColor="secondary"
           centered
         >
           {this.props.tables.map((table) => {
@@ -361,7 +363,6 @@ class MetadataSearch extends React.Component {
     if (current_table === undefined) {
       return <Redirect to="/not-found"/>
     }
-
     if (this.state.schemas===null || !this.props.completed) {
       return (
         <Grid container
@@ -396,8 +397,7 @@ class MetadataSearch extends React.Component {
           </Grid>
         </Grid>
       )
-    }else if (this.props.completed && this.props.models[current_table].results.count===0){
-      console.log("HI")
+    }else if (this.props.completed && (this.props.models[current_table] === undefined || this.props.models[current_table].results.count===0)){
       const redirect_to_table = Object.values(this.props.models).filter(model=>model!==undefined && model.table!==current_table && model.results.count>0)[0].table
       const preferred = this.props.preferred_name[redirect_to_table]
       return <Redirect to={{

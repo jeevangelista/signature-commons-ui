@@ -22,9 +22,14 @@ const style = theme => ({
     marginBottom: 10,
   },
   submit: {
+    background: theme.palette.defaultButton.main,
+    color: theme.palette.defaultButton.contrastText,
+    '&:hover': {
+      background: theme.palette.defaultButton.dark,
+    },
     '&:disabled': {
-      background: theme.palette.secondary.light,
-    }
+      background: theme.palette.defaultButton.disabled,
+    },
   }
 })
 
@@ -92,7 +97,7 @@ const UpDownGeneset = (props) => (
               props.toggleInput('Overlap')
             }}
             value="sigsearch"
-            color="secondary"
+            color="primary"
           />
             Up and Down Gene Sets
         </label>
@@ -221,7 +226,6 @@ class GenesetSearchBox extends React.Component {
             disabled={this.isEmpty() || this.props.loading} 
             type="submit"
             name="action"
-            color="secondary"
             onClick={call(this.props.submit, this.props.input)}
           >
             { this.props.loading ?
