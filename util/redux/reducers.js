@@ -34,7 +34,7 @@ export const initialState = {
 }
 
 function rootReducer(state = initialState, action) {
-  if (action.type === action_definitions.INITIALIZE_SIGCOM) {
+  if (action.type === action_definitions.FETCH_SUMMARY_SUCCEEDED) {
     return {
       ...state,
       serverSideProps: action.serverSideProps,
@@ -149,7 +149,6 @@ function rootReducer(state = initialState, action) {
   if (action.type === action_definitions.FETCH_METADATA_ABORTED) {
     return Object.assign({}, state, {
       results: {},
-      loading: true,
     })
   }
   if (action.type === action_definitions.INITIALIZE_SIGNATURE_SEARCH) {
